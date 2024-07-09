@@ -13,5 +13,5 @@ class DbConnectionHanlder:
   def get_connection(self) -> sqlite3.Connection:
     return self.__conn
   
-db_connection_hanlder = DbConnectionHanlder()
+db_connection_handler = DbConnectionHanlder()
   
