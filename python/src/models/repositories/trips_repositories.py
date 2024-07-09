@@ -1,11 +1,13 @@
 from sqlite3 import Connection
-from typing import Dict, Tuple
+from typing import TypedDict, Tuple
+
+TripInfoDict = TypedDict('TripInfoDict', {'id': str, 'destination': str, 'start_date': str, 'end_date': str, 'owner_name': str, 'owner_email': str})
 
 class TripsRepository:
   def __init__(self, conn: Connection) -> None:
     self.__conn = conn
 
-  def create_trip(self, trips_infos: Dict) -> None:
+  def create_trip(self, trips_infos: TripInfoDict) -> None:
     cursor = self.__conn.cursor()
     cursor.execute(
       '''
@@ -34,6 +36,7 @@ class TripsRepository:
       (trip_id, )
     )
     return cursor.fetchone()
+  
   
   def update_trip_status(self, trip_id: str) -> None:
     cursor = self.__conn.cursor()
