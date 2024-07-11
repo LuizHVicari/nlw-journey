@@ -1,5 +1,6 @@
 from typing import Dict, TypedDict
 from uuid import uuid4
+from src.drivers.email_sender import send_email
 
 from src.models.repositories.trips_repositories import TripsRepository
 from src.models.repositories.emails_to_invite_repository import EmailToInviteRepository
@@ -31,6 +32,8 @@ class TripCreator():
             'id': str(uuid4())
           })
 
+      send_email([body['owner_email']], f'http://localhost:3000/trips/{trip_id}/confirm')
+      
       return {
         'body' : {'id': trip_id},
         'status_code': 201
