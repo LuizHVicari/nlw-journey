@@ -26,6 +26,12 @@ export default function Index() {
         className='h-8' 
         resizeMode='contain'
       />
+
+      <Image
+        source={require('@/assets/bg.png')}
+        className='absolute'
+      />
+
       <Text 
         className='text-zinc-400 font-regular text-center text-lg mt-3'
       >
@@ -39,6 +45,7 @@ export default function Index() {
         <MapPin color={colors.zinc[400]} size={20}/>
           <Input.Field
             placeholder='Para onde?'
+            editable={stepForm === StepForm.TRIP_DETAILS}
           />
         </Input>
 
@@ -46,6 +53,7 @@ export default function Index() {
         <IconCalendar color={colors.zinc[400]} size={20}/>
           <Input.Field
             placeholder='Quando?'
+            editable={stepForm === StepForm.TRIP_DETAILS}
           />
         </Input>
 
@@ -71,7 +79,15 @@ export default function Index() {
         }
 
         <Button isLoading={false} onPress={handleNextStepForm}>
-          <Button.Title>Continuar</Button.Title>
+          <Button.Title>
+            {
+              stepForm == StepForm.TRIP_DETAILS
+               ? 'Continuar'
+               : 'Confirmar Viagem'
+            }
+            
+            
+          </Button.Title>
           <ArrowRight color={colors.lime[950]} size={20}/>
         </Button>
 
